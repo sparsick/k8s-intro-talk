@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spring-boot-demo
+spec:
+  containers:
+  - name: hero-app
+    image: sparsick/spring-boot-demo:1.5.0
+    ports:
+    - containerPort: 8080

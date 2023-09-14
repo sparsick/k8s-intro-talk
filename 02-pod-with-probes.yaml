@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spring-boot-demo
+spec:
+  containers:
+  - name: hero-app
+    image: sparsick/spring-boot-demo:1.5.0
+    ports:
+    - name: container-http
+      containerPort: 8080
+      protocol: TCP
+    livenessProbe:
+      httpGet:
+        path: /actuator/health/liveness
+        port: container-http
+      initialDelaySeconds: 15
+      periodSeconds: 10
+      timeoutSeconds: 30
+    readinessProbe:
+      httpGet:
+        path: /actuator/health/readiness
+        port: container-http
+      initialDelaySeconds: 15
+      periodSeconds: 10
+      timeoutSeconds: 30

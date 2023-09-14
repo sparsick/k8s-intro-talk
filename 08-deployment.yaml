@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-demo-deploy
+  namespace: spring-boot-demo-namespace 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hero-app
+  template:
+    metadata:
+      labels:
+        app: hero-app
+    spec:
+      containers:
+      - name: hero-app
+        image: sparsick/spring-boot-demo:1.5.0
+        ports:
+        - name: container-http
+          containerPort: 8080
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: spring-boot-demo-config
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-boot-demo-config
+  namespace: spring-boot-demo-namespace 
+data:
+  MONGODB_ENABLED: "false"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-demo-srv
+  namespace: spring-boot-demo-namespace 
+spec:
+  type: ClusterIP   
+  selector:
+    app: hero-app
+  ports:
+  - name: hero-http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spring-demo-ingress
+  namespace: spring-boot-demo-namespace 
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/x-forwarded-prefix: "/"
+spec:
+  rules:
+    - host: spring-boot-demo.local
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: spring-boot-demo-srv
+                port:
+                  number: 80
