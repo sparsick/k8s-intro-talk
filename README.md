@@ -1,1 +1,79 @@
 # k8s-intro-talk
+
+You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on Female Developer Club in Düsseldorf at 16th September 2023.
+
+The next chapter "Runbook" describes the demo steps.
+
+
+## Tools, that are used in the demo
+- [Docker CE](https://docs.docker.com/get-started/overview/)
+- [Minikube](https://minikube.sigs.k8s.io/docs/)
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/)
+
+## Runbook
+
+Demonstration Container Build
+```shell
+./00-container-build.sh
+```
+
+Starting Minikube
+```shell
+minikube start --addons=ingress,dashboard
+minikube dashboard
+```
+
+Create a simple pod
+```shell
+kubectl apply -f 01-pod.yaml   
+kubectl get pods     
+kubectl delete po spring-boot-demo                                       
+```
+
+Create a pod with probes
+```shell
+kubectl apply -f 02-pod-with-probes.yaml  
+kubectl delete po spring-boot-demo                                       
+```
+
+Create Service and Pod
+```shell
+kubectl apply -f 03-pod-with-service.yaml
+kubectl run -it --rm --restart=Never busybox --image=gcr.io/google-containers/busybox sh
+	wget http://srv.ip/hero -O -           
+kubectl get pods
+kubectl get service                        
+```
+
+Create Ingress 
+```shell
+ kubectl apply -f 04-ingress.yaml
+ minikube ip
+ nano /etc/hosts
+```
+
+Create Config Map and Secrets
+```shell
+kubectl apply -f 05-config-secret.yaml
+kubectl apply -f 06-pod-with-config.yaml
+```
+
+Create Namespace
+```shell
+kubectl apply -f 07-namespace.yaml
+kubectl get pod --namespace spring-boot-demo-namespace
+```
+
+Create Deployment
+```shell
+kubectl delete ingress spring-demo-ingress
+kubectl apply -f 08-deployment.yaml
+kubectl delete deployments.apps --namespace spring-boot-demo-namespace spring-boot-demo-deploy
+```
+
+
+## Further Information
+- [Article](https://www.informatik-aktuell.de/entwicklung/methoden/container-images-deep-dive-101-wege-zum-bauen-und-bereitstellen.html) about Container Image Build Tools (German)
+
+## More good talks to this topic
+- [From 0 to Kubernetes](https://media.ccc.de/v/froscon2023-2918-from_0_to_kubernetes)
