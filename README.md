@@ -1,8 +1,8 @@
 # k8s-intro-talk
 
-You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on Female Developer Club in Düsseldorf at 16th September 2023.
+You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on Cyberland Ladies Night (remote) at 2nd November 2023.
 
-The next chapter "Runbook" describes the demo steps.
+The chapter "Runbook" describes the demo steps.  
 
 
 ## Tools, that are used in the demo
@@ -17,9 +17,9 @@ Demonstration Container Build
 ./00-container-build.sh
 ```
 
-Starting Minikube
+Starting Minikube with two nodes
 ```shell
-minikube start --addons=ingress,dashboard
+minikube start --nodes 2 --addons=ingress,dashboard
 minikube dashboard
 ```
 
@@ -38,11 +38,12 @@ kubectl delete po spring-boot-demo
 
 Create Service and Pod
 ```shell
-kubectl apply -f 03-pod-with-service.yaml
-kubectl run -it --rm --restart=Never busybox --image=gcr.io/google-containers/busybox sh
-	wget http://srv.ip/hero -O -           
+kubectl apply -f 03-pod-with-service.yaml          
 kubectl get pods
-kubectl get service                        
+kubectl get service 
+
+kubectl run -it --rm --restart=Never busybox --image=gcr.io/google-containers/busybox sh
+	wget http://srv.ip/hero -O - # srv.ip is the Cluster IP column by kubectl get service                       
 ```
 
 Create Ingress 
@@ -54,13 +55,17 @@ Create Ingress
 
 Create Config Map and Secrets
 ```shell
+kubectl delete po spring-boot-demo 
 kubectl apply -f 05-config-secret.yaml
+kubectl get configmaps
+kubectl get secrets
 kubectl apply -f 06-pod-with-config.yaml
 ```
 
 Create Namespace
 ```shell
 kubectl apply -f 07-namespace.yaml
+kubectl get namespaces
 kubectl get pod --namespace spring-boot-demo-namespace
 ```
 
