@@ -1,6 +1,6 @@
 # k8s-intro-talk
 
-You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on Cyberland Ladies Night (remote) at 2nd November 2023.
+You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on "Continuous Lifecycle" at 15th November 2023.
 
 The chapter "Runbook" describes the demo steps.  
 
@@ -33,6 +33,7 @@ kubectl delete po spring-boot-demo
 Create a pod with probes
 ```shell
 kubectl apply -f 02-pod-with-probes.yaml  
+kubectl describe po spring-boot-demo
 kubectl delete po spring-boot-demo                                       
 ```
 
