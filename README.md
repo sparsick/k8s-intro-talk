@@ -1,6 +1,6 @@
 # k8s-intro-talk
 
-You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on "Continuous Lifecycle" at 15th November 2023.
+You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on "OOP 2024" at 1st February 2024.
 
 The chapter "Runbook" describes the demo steps.  
 
