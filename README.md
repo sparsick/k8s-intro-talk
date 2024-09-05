@@ -77,6 +77,22 @@ kubectl apply -f 08-deployment.yaml
 kubectl delete deployments.apps --namespace spring-boot-demo-namespace spring-boot-demo-deploy
 ```
 
+Create Job
+```shell
+kubectl apply -f 09-job.yaml
+kubectl get pods –watch
+kubectl logs jobs/demo-job job 
+kubectl delete job job-demo
+```
+
+Create Cron Job
+```shell
+kubectl apply -f 10-cronjob.yaml
+kubectl get cronjobs --watch
+kubectl get pods –watch
+kubectl logs cronjob-demo
+kubectl delete cronjobs cronjob-demo
+```
 
 ## Further Information
 - [Article](https://www.informatik-aktuell.de/entwicklung/methoden/container-images-deep-dive-101-wege-zum-bauen-und-bereitstellen.html) about Container Image Build Tools (German)
