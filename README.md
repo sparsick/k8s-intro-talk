@@ -1,6 +1,6 @@
 # k8s-intro-talk
 
-You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on "OOP 2024" at 1st February 2024.
+You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on "Java Forum Nord" at 10th September 2024.
 
 The chapter "Runbook" describes the demo steps.  
 
@@ -80,7 +80,7 @@ kubectl delete deployments.apps --namespace spring-boot-demo-namespace spring-bo
 Create Job
 ```shell
 kubectl apply -f 09-job.yaml
-kubectl get pods –watch
+kubectl get pods -–watch
 kubectl logs jobs/demo-job job 
 kubectl delete job job-demo
 ```

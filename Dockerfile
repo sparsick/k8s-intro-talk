@@ -1,4 +1,4 @@
-FROM docker.io/eclipse-temurin:17.0.1_12-jre as builder
+FROM docker.io/eclipse-temurin:17.0.1_12-jre AS builder
 WORKDIR /application
 COPY maven/*.jar application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
