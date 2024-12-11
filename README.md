@@ -1,6 +1,6 @@
 # k8s-intro-talk
 
-You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on "Java Forum Nord" at 10th September 2024.
+You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on "IT Tage 2024" at 11th December 2024.
 
 The chapter "Runbook" describes the demo steps.  
 
