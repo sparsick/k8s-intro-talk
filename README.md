@@ -1,8 +1,8 @@
 # k8s-intro-talk
 
-You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on "IT Tage 2024" at 11th December 2024.
+You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on "JAX" at 6th May 2025.
 
-The chapter "Runbook" describes the demo steps.  
+The chapter "Runbook" describes the demo steps.
 
 
 ## Tools, that are used in the demo
@@ -25,29 +25,29 @@ minikube dashboard
 
 Create a simple pod
 ```shell
-kubectl apply -f 01-pod.yaml   
-kubectl get pods     
-kubectl delete po spring-boot-demo                                       
+kubectl apply -f 01-pod.yaml
+kubectl get pods
+kubectl delete po spring-boot-demo
 ```
 
 Create a pod with probes
 ```shell
-kubectl apply -f 02-pod-with-probes.yaml  
+kubectl apply -f 02-pod-with-probes.yaml
 kubectl describe po spring-boot-demo
-kubectl delete po spring-boot-demo                                       
+kubectl delete po spring-boot-demo
 ```
 
 Create Service and Pod
 ```shell
-kubectl apply -f 03-pod-with-service.yaml          
+kubectl apply -f 03-pod-with-service.yaml
 kubectl get pods
-kubectl get service 
+kubectl get service
 
 kubectl run -it --rm --restart=Never busybox --image=gcr.io/google-containers/busybox sh
-	wget http://srv.ip/hero -O - # srv.ip is the Cluster IP column by kubectl get service                       
+	wget http://srv.ip/hero -O - # srv.ip is the Cluster IP column by kubectl get service
 ```
 
-Create Ingress 
+Create Ingress
 ```shell
  kubectl apply -f 04-ingress.yaml
  minikube ip
@@ -56,7 +56,7 @@ Create Ingress
 
 Create Config Map and Secrets
 ```shell
-kubectl delete po spring-boot-demo 
+kubectl delete po spring-boot-demo
 kubectl apply -f 05-config-secret.yaml
 kubectl get configmaps
 kubectl get secrets
@@ -81,7 +81,7 @@ Create Job
 ```shell
 kubectl apply -f 09-job.yaml
 kubectl get pods -–watch
-kubectl logs jobs/demo-job job 
+kubectl logs jobs/demo-job job
 kubectl delete job job-demo
 ```
 
