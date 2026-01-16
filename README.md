@@ -1,3 +1,5 @@
+⚠️ **This repository is moved to https://codeberg.org/sparsick/k8s-intro-talk** ⚠️
+
 # k8s-intro-talk
 
 You can find here the slides and the sample code of my talk "Kubernetes, das unbekannte Wesen" that I presented on "JAX" at 6th May 2025.
